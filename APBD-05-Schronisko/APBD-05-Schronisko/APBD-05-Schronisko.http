@@ -1,0 +1,6 @@
+@APBD_05_Schronisko_HostAddress = http://localhost:5059
+
+GET {{APBD_05_Schronisko_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
