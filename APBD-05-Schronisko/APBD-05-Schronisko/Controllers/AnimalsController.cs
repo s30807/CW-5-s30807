@@ -10,7 +10,7 @@ public class AnimalsController : ControllerBase
     public static List<Animal> Animals = [
     new Animal()
     {
-        Id = 1,
+        Id = 0,
         Category = "Cats",
         Color = "Blue",
         Name = "Cat",
@@ -18,7 +18,7 @@ public class AnimalsController : ControllerBase
     },
     new Animal()
     {
-        Id = 2,
+        Id = 1,
         Category = "Dogs",
         Color = "Red",
         Name = "Dog",
@@ -34,7 +34,7 @@ public class AnimalsController : ControllerBase
     
     //2
     [HttpGet]
-    [Route("{id}")]
+    [Route("animal/{id}")]
     public IActionResult GetAnimalById(int id)
     {
         var animal = Animals.FirstOrDefault(e => e.Id == id);
@@ -81,6 +81,7 @@ public class AnimalsController : ControllerBase
     
     //5
     [HttpDelete]
+    [Route("{id}")]
     public IActionResult DeleteAnimal(int id)
     {
         var animalToDelete = Animals.FirstOrDefault(e => e.Id == id);
@@ -93,4 +94,22 @@ public class AnimalsController : ControllerBase
         
         return NoContent();
     }
+    
+    //6
+    [HttpGet]
+    [Route("name/{name}")]
+    public IActionResult GetAnimalByName(string name)
+    {
+        var animal = Animals.FirstOrDefault(e => e.Name == name);
+
+        if (animal == null)
+        {
+            return NotFound($"Animal with name: {name} not found");
+        }
+    
+        return Ok(animal);
+    }
+    
+    
+    
 }
